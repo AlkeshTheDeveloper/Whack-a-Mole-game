@@ -1,12 +1,27 @@
- (function () {
-    
-     let kMusic = new Audio("./audio/Monkeys-Spinning-Monkeys.mp3");
-     
-})();
+let kMusic = new Audio("./audio/Monkeys-Spinning-Monkeys.mp3");
+
+let playnow = setTimeout(function () {
+    kMusic.play();
+}, 1000);
+  let count = 0;
+let pauseIt =
+
+    document.getElementById("volumeMuter").addEventListener("click", () => setTimeout(() => {
+      
+        count%2==0?kMusic.pause() :kMusic.play();
+        console.log("count value " + count);
+        count++;
+        
+        count % 2 == 1
+          ? (document.getElementById("volumeChanger").classList =
+              "fas fa-volume-mute")
+          : (document.getElementById("volumeChanger").classList =
+              "fas fa-volume-up");
+}, 0));
 
 let hit = new Audio("./audio/punch.wav");
 
-document.getElementById("volume").addEventListener("click", () => {});
+
 
 const boxes = document.querySelectorAll(".box");
 const time = document.querySelector("#time span");
@@ -18,45 +33,39 @@ let interval;
 let timeInterval;
 
 boxes.forEach((box) => {
-  box.addEventListener("click", (el) => {
-      if (el.target.type === "mole") {
-          hit.play();
-      score += 1;
-          mole.style.display = "none";
-      document.getElementById("scores").innerText = score;
-    }
-  });
+    box.addEventListener("click", (el) => {
+        if (el.target.type === "mole") {
+            hit.play();
+            score += 1;
+            mole.style.display = "none";
+            document.getElementById("scores").innerText = score;
+        }
+    });
 });
 
-   
-    interval = setInterval(() => {
-        mole.type = "mole";
-        mole.src = "./mole.png";
-        mole.height = 120;
-        mole.width = 150;
-        mole.style.display = "block";
-        const box = Math.floor(Math.random() * boxes.length);
-        boxes[box].appendChild(mole);
-        setTimeout(() => (mole.style.display = "none"), 1200);
-    }, 1500);
+interval = setInterval(() => {
+    mole.type = "mole";
+    mole.src = "./mole.png";
+    mole.height = 120;
+    mole.width = 150;
+    mole.style.display = "block";
+    const box = Math.floor(Math.random() * boxes.length);
+    boxes[box].appendChild(mole);
+    setTimeout(() => (mole.style.display = "none"), 1200);
+}, 1500);
 
-    timeInterval = setInterval(() => {
-        timeCount -= 1;
-        time.innerText = timeCount;
+timeInterval = setInterval(() => {
+    timeCount -= 1;
+    time.innerText = timeCount;
 
-        if (timeCount === 0) {
-                document.getElementById("gameboard").style.display = "none";
-                document.getElementById("gameover").style.display = "flex";
-                  document.getElementById("scoreDisplay").innerText = score;
+    if (timeCount === 0) {
+        document.getElementById("gameboard").style.display = "none";
+        document.getElementById("gameover").style.display = "flex";
+        document.getElementById("scoreDisplay").innerText = score;
 
-            var bMusic = new Audio("./audio/smb_gameover.wav");
-            bMusic.play();
-            clearInterval(interval);
-            clearInterval(timeInterval);
-        
-        }
-    }, 1000);
-    
-
-
-
+        var bMusic = new Audio("./audio/smb_gameover.wav");
+        bMusic.play();
+        clearInterval(interval);
+        clearInterval(timeInterval);
+    }
+}, 1000);
