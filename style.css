@@ -18,7 +18,7 @@ body {
 
 .boxes {
     position: relative;
-    max-width: 350px;
+    max-width: 650px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -27,6 +27,9 @@ body {
     align-items: center;
     text-align: center;
     padding: 50px 30px;
+        cursor: url("thor-removebg-preview.png"),
+        auto;
+
 }
 
 .box {
@@ -34,7 +37,6 @@ body {
     width: 150px;
     border: 2px inset gray;
 
-    cursor: url("thor-removebg-preview.png"), auto;
 }
 
 .gameoverbox {
@@ -52,11 +54,42 @@ body {
 }
 
 .gameHead {
-    width: 300px;
+    width: 600px;
     height: 100px;
     color: rgb(165, 42, 69);
     background-color: lightgoldenrodyellow;
     text-align: center;
 
     border: 2px solid red;
+}
+
+.playInfo{
+    position: absolute;
+    left:50px;
+    width:300px;
+    background-color: pink;
+    border-radius:30px;
+    height:400px;
+    color: black;
+    border:2px solid yellow;
+    text-align: center;
+    vertical-align: middle;
+    padding: 30px 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    line-height: 2.3;
+}
+
+.total-score{
+    border: 2pxs solid yellow;
+    background: rebeccapurple;
+    color: white;
+}
+
+.Time-display{
+    position: relative;
+    display: flex;
+    width:300px;
+    flex-direction: column;
+    background:white;
+    color:blue;
 }

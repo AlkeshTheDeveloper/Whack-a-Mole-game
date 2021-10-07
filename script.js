@@ -22,7 +22,7 @@ boxes.forEach((box) => {
       if (el.target.type === "mole") {
           hit.play();
       score += 1;
-      mole.style.display = "none";
+          mole.style.display = "none";
       document.getElementById("scores").innerText = score;
     }
   });
@@ -32,8 +32,8 @@ boxes.forEach((box) => {
     interval = setInterval(() => {
         mole.type = "mole";
         mole.src = "./mole.png";
-        mole.height = 100;
-        mole.width = 100;
+        mole.height = 120;
+        mole.width = 150;
         mole.style.display = "block";
         const box = Math.floor(Math.random() * boxes.length);
         boxes[box].appendChild(mole);
@@ -59,7 +59,4 @@ boxes.forEach((box) => {
     
 
 
-// document.getElementById("start").addEventListener("click", () => {
-//     window.onload = playAudio
-//   score == 0 ? window.location.reload() : "";
-// });
+
