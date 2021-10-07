@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url(./back2.jpg);
+    background-size: cover;
+
+}
+
+.boxes {
+    position: relative;
+    max-width: 350px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 5px;
+    background-color: rgb(174, 216, 247);
+    align-items: center;
+    text-align: center;
+    padding: 50px 30px;
+}
+
+.box {
+    height: 150px;
+    width: 150px;
+    border: 2px inset gray;
+
+    cursor: url("thor-removebg-preview.png"), auto;
+}
+
+.gameoverbox {
+    position: absolute;
+    top: 200px;
+    display: none;
+    z-index: 2;
+    background-color: antiquewhite;
+    height: 350px;
+    width: 40vw;
+    border-radius: 30px;
+    vertical-align: middle;
+    text-align: center;
+    padding: 50px auto;
+}
+
+.gameHead {
+    width: 300px;
+    height: 100px;
+    color: rgb(165, 42, 69);
+    background-color: lightgoldenrodyellow;
+    text-align: center;
+
+    border: 2px solid red;
+}
