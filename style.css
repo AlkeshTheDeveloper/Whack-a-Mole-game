@@ -13,7 +13,6 @@ body {
     align-items: center;
     background: url(./back2.jpg);
     background-size: cover;
-
 }
 
 .boxes {
@@ -27,16 +26,14 @@ body {
     align-items: center;
     text-align: center;
     padding: 50px 30px;
-        cursor: url("thor-removebg-preview.png"),
-        auto;
-
+    cursor: url("thor-removebg-preview.png"),
+    auto;
 }
 
 .box {
     height: 150px;
     width: 150px;
     border: 2px inset gray;
-
 }
 
 .gameoverbox {
@@ -48,7 +45,9 @@ body {
     height: 350px;
     width: 40vw;
     border-radius: 30px;
-    vertical-align: middle;
+    
+     flex-direction: column;
+     justify-content: center;
     text-align: center;
     padding: 50px auto;
 }
@@ -59,19 +58,22 @@ body {
     color: rgb(165, 42, 69);
     background-color: lightgoldenrodyellow;
     text-align: center;
+  
+font-family: 'Press Start 2P',
+cursive;
+display: flex;
+justify-content: center;
+align-items: center;}
 
-    border: 2px solid red;
-}
-
-.playInfo{
+.playInfo {
     position: absolute;
-    left:50px;
-    width:300px;
+    left: 50px;
+    width: 300px;
     background-color: pink;
-    border-radius:30px;
-    height:400px;
+    border-radius: 30px;
+    height: 400px;
     color: black;
-    border:2px solid yellow;
+    border: 2px solid yellow;
     text-align: center;
     vertical-align: middle;
     padding: 30px 20px;
@@ -79,17 +81,17 @@ body {
     line-height: 2.3;
 }
 
-.total-score{
+.total-score {
     border: 2pxs solid yellow;
     background: rebeccapurple;
     color: white;
 }
 
-.Time-display{
+.Time-display {
     position: relative;
     display: flex;
-    width:300px;
+    width: 300px;
     flex-direction: column;
-    background:white;
-    color:blue;
+    background: white;
+    color: blue;
 }

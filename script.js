@@ -46,7 +46,7 @@ boxes.forEach((box) => {
 
         if (timeCount === 0) {
                 document.getElementById("gameboard").style.display = "none";
-                document.getElementById("gameover").style.display = "block";
+                document.getElementById("gameover").style.display = "flex";
                   document.getElementById("scoreDisplay").innerText = score;
 
             var bMusic = new Audio("./audio/smb_gameover.wav");
