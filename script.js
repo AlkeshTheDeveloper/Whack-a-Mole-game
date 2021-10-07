@@ -1,27 +1,37 @@
 let kMusic = new Audio("./audio/Monkeys-Spinning-Monkeys.mp3");
 
-let playnow = setTimeout(function () {
+// function for playing background music
+let playNow = setTimeout(function () {
     kMusic.play();
-}, 1000);
-  let count = 0;
-let pauseIt =
+    kMusic.muted = false;
+}, 30);
 
-    document.getElementById("volumeMuter").addEventListener("click", () => setTimeout(() => {
-      
-        count%2==0?kMusic.pause() :kMusic.play();
-        console.log("count value " + count);
-        count++;
-        
-        count % 2 == 1
-          ? (document.getElementById("volumeChanger").classList =
-              "fas fa-volume-mute")
-          : (document.getElementById("volumeChanger").classList =
-              "fas fa-volume-up");
-}, 0));
+// function for music stoping after 60secs
+let stopNow = setTimeout(function () {
+    kMusic.muted = true;
+}, 60000);
+
+
+
+let count = 0;
+//volume mute/unmute option function
+let pauseIt = document
+    .getElementById("volumeMuter")
+    .addEventListener("click", () =>
+        setTimeout(() => {
+            count % 2 == 0 ? kMusic.pause() : kMusic.play();
+            console.log("count value " + count);
+            count++;
+
+            count % 2 == 0 ?
+                (document.getElementById("volumeChanger").classList =
+                    "fas fa-volume-up") :
+                (document.getElementById("volumeChanger").classList =
+                    "fas fa-volume-mute");
+        }, 0)
+    );
 
 let hit = new Audio("./audio/punch.wav");
-
-
 
 const boxes = document.querySelectorAll(".box");
 const time = document.querySelector("#time span");
