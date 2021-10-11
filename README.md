@@ -6,7 +6,7 @@
 
 
 ## How to Play :
-As as the website loads game starts the player has to hit the moles coming in box with hammer to score points in the remaining.
+As  the website loads game starts the player has to hit the moles coming in box with hammer to score points in the remaining.
 
 ## Features include:
 Background Music, Hit sound ,Game Over screen
