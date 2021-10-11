@@ -2,18 +2,16 @@ let kMusic = new Audio("./audio/Monkeys-Spinning-Monkeys.mp3");
 
 // function for playing background music
 let playNow = setTimeout(function () {
-    kMusic.play();
-    kMusic.muted = false;
-}, 30);
+  kMusic.play();
+  kMusic.muted = false;
+}, 1000);
 
 // function for music stoping after 60secs
 let stopNow = setTimeout(function () {
-    kMusic.muted = true;
+  kMusic.muted = true;
 }, 60000);
 
-
-
-let count = 0;
+var count = 0;
 //volume mute/unmute option function
 let pauseIt = document
     .getElementById("volumeMuter")
