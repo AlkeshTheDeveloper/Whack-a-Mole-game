@@ -45,9 +45,8 @@ body {
     height: 350px;
     width: 40vw;
     border-radius: 30px;
-    
-     flex-direction: column;
-     justify-content: center;
+    flex-direction: column;
+    justify-content: center;
     text-align: center;
     padding: 50px auto;
 }
@@ -58,12 +57,11 @@ body {
     color: rgb(165, 42, 69);
     background-color: lightgoldenrodyellow;
     text-align: center;
-  
-font-family: 'Press Start 2P',
-cursive;
-display: flex;
-justify-content: center;
-align-items: center;}
+   font-family: 'Press Start 2P',
+    cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;}
 
 .playInfo {
     position: absolute;
@@ -82,7 +80,7 @@ align-items: center;}
 }
 
 .total-score {
-    border: 2pxs solid yellow;
+    border: 2px solid yellow;
     background: rebeccapurple;
     color: white;
 }
