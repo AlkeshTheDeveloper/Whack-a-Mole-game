@@ -1,14 +1,13 @@
 const gameWidth = () => {
-  if (window.innerWidth < 400) {
-    document.getElementsByClassName("playInfo")[0].style.display = "none"
+  if (window.screen.width < 500) {
+    document.getElementsByClassName("playInfo")[0].style.display = "none";
     return 100;
-  }
-  else {
-       document.getElementsByClassName("playInfo")[0].style.display = "block";
+  } else {
+    document.getElementsByClassName("playInfo")[0].style.display = "block";
 
     return 120;
   }
-}
+};
 
 var kMusic = new Audio("./audio/Monkeys-Spinning-Monkeys.mp3");
 // function for playing background music
@@ -21,7 +20,7 @@ let stopNow = setTimeout(function () {
   kMusic.muted = true;
 }, 60000);
 
-console.log(kMusic.play())
+console.log(kMusic.play());
 
 var count = 0;
 //volume mute/unmute option function
@@ -41,7 +40,7 @@ let pauseIt = document
     }, 0)
   );
 
-let hit = new Audio("./audio/punch.wav","muted");
+let hit = new Audio("./assets/audio/punch.wav");
 
 const boxes = document.querySelectorAll(".box");
 const time = document.querySelector("#time span");
@@ -56,14 +55,11 @@ boxes.forEach((box) => {
   box.addEventListener("click", (el) => {
     if (el.target.type === "mole") {
       hit.play();
-      
+
       score += 1;
       mole.style.display = "none";
       document.getElementById("scores").innerText = score;
-      cursor =
-        url('./assets/images/hammer.png');
-      
-
+      cursor = url("./assets/images/hammer.png");
     }
   });
 });
@@ -87,7 +83,7 @@ timeInterval = setInterval(() => {
     document.getElementById("gameboard").style.display = "none";
     document.getElementById("gameover").style.display = "flex";
     document.getElementById("scoreDisplay").innerText = score;
-    var bMusic = new Audio("./audio/smb_gameover.wav");
+    var bMusic = new Audio("./assets/audio/smb_gameover.wav");
     bMusic.play();
     clearInterval(interval);
     clearInterval(timeInterval);
