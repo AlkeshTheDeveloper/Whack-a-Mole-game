@@ -1,28 +1,35 @@
 # Whack-a-Mole-game
 
-## About Game 
- It is a single player game.The  objective of the game is to hit the mole with Hammer to score Points with in the given time.
+## About Game
 
+It is a single player game.The objective of the game is to hit the mole with Hammer to score Points with in the given time.
 
+## Screenshots
+
+![Home Screen](assets/screenshots/home.png)
+![Gameplay](assets/images/gamescreen.png)
 
 ## How to Play :
-As  the website loads game starts the player has to hit the moles coming in box with hammer to score points in the remaining.
+
+As the website loads game starts the player has to hit the moles coming in box with hammer to score points in the remaining.
 
 ## Features include:
-Background Music, Hit sound ,Game Over screen
 
+- Background music, hit sound, and concise game over screen
+- Mobile-friendly layout, improved accessibility (aria labels & live regions)
+- Touch optimizations: larger tap targets, disabled tap highlight, and responsive countdown/start button sizing for phones
+- Start/Restart countdown flow with visual hit feedback
 
-## Technology Used 
+## Technology Used
 
 HTML 5, CSS 3 , JAVASCRIPT
 
 ## Resources
-Mole images and background images may be copyrighted and  used here for educational purpose.
 
-
+Mole images and background images may be copyrighted and used here for educational purpose.
 
 ## Hosted Url
-you can play the game on the following url 
+
+you can play the game on the following url
 
 https://alkeshthedeveloper.github.io/Whack-a-Mole-game/
-

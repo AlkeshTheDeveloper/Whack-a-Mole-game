@@ -1,113 +1,506 @@
+:root {
+  --font-family: "Press Start 2P", "Segoe UI", Roboto, Arial, sans-serif;
+  --base-font-size: 16px;
+  --bg-image: url("./assets/images/back2.jpg");
+  --color-primary: #a52a45;
+  --color-accent: #ff7b54;
+  --start-card-bg: rgba(255, 255, 255, 0.92);
+  --boxes-bg: linear-gradient(180deg, #cfe9fb, #b8dbf3);
+  --box-bg: linear-gradient(180deg, #ffffff, #f1f1f1);
+  --muted: rgba(0, 0, 0, 0.15);
+  --shadow-1: 0 6px 14px rgba(0, 0, 0, 0.15);
+  --shadow-2: 0 12px 30px rgba(0, 0, 0, 0.12);
+  --grid-gap: 12px;
+  --max-width: 420px;
+  --box-min: 80px;
+}
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  font-size: var(--base-font-size);
 }
 
 body {
-    text-align: center;
-    height: 100vh;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
-    background: url(./assets/images/back2.jpg);
-    background-size: cover;
+  min-height: 100vh;
+  background: var(--bg-image) center / cover no-repeat;
+  text-align: center;
+  font-family: var(--font-family);
+  font-size: var(--base-font-size);
+  line-height: 1.25;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.boxes {
-    position: relative;
-    top: 30px;
-    min-width: 21em;
-    max-width: 28em;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    grid-gap: 5px;
-    background-color: rgb(174, 216, 247);
-    align-items: center;
-    text-align: center;
-    padding: 50px 30px;
-    cursor: url("./assets/images/thor-removebg-preview.png"),
-    auto;
-    animation-name: roter;
-    animation-duration: 4000;
+/* Apply consistent typography across core elements */
+button,
+.startBtn,
+#restartBtn,
+.theme-btn {
+  font-family: var(--font-family);
+  font-size: 0.95rem;
+  line-height: 1;
 }
 
-@keyframes roter {
-    from {
-        cursor: url("./assets/images/thor-removebg-preview.png"),auto;
-            transform: rotate(var(--r));
-
+h1,
+h2,
+h3,
+p,
+li,
+.playInfo,
+.gameHead,
+.Time-display {
+  font-family: var(--font-family);
 }
 
-    to {
-        cursor: url("./assets/images/hammer.png"),auto;
-            transform: rotate(70deg);
-
-    }
+/* Make the countdown use the same font but larger scale for emphasis */
+.countdown {
+  font-family: var(--font-family);
+  font-weight: 700;
 }
 
-
-.box {
-    height: 8em;
-   min-width: 6em;
-   max-width: 8em;
-    border: 2px inset gray;
-}
-
-.gameoverbox {
-
-    display: none;
-    background-color: antiquewhite;
-    height: 350px;
-    min-width: 38vw;
-    border-radius: 30px;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    padding: 50px auto;
-    margin-right: 10px;
-    margin-top: 5px;
-}
-
+/* HEADER */
 
 .gameHead {
-    display: block;
-    height: 50px;
-    color: rgb(165, 42, 69);
-    background-color: rgb(193, 236, 190);
-    padding:10px 0px;
-    font-family: 'Press Start 2P',
-    cursive;
-
-    /* display: flex;
-    justify-content: center;
-    align-items: center;} */
+  background: #c1ecbe;
+  padding: 12px 0;
+  color: var(--color-primary);
 }
-.playInfo {
-    margin-top: 30px;
-    margin-right: 100px;
-    margin-left: 30px;
-    width: 300px;
-    float: left;
-    background-color: pink;
-    border-radius: 30px;
-    height: 400px;
-    color: black;
-    border: 2px solid yellow;
-    padding: 30px 20px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    line-height: 2.3;
+
+/* INFO */
+
+.Time-display {
+  background: #fff;
+  padding: 10px;
 }
 
 .total-score {
-    border: 2px solid yellow;
-    background: rebeccapurple;
-    color: white;
+  background: var(--color-accent);
+  color: #fff;
+  padding: 6px 8px;
+  border-radius: 6px;
 }
 
-.Time-display {
-    background: white;
-    color: blue;
+/* GAME GRID (mobile-first, DRY) */
+.boxes {
+  margin: 18px auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(var(--box-min), 1fr));
+  gap: var(--grid-gap);
+
+  max-width: var(--max-width);
+  padding: 14px;
+
+  background: var(--boxes-bg);
+  border-radius: 14px;
+
+  box-shadow: var(--shadow-2), inset 0 2px 6px rgba(255, 255, 255, 0.6);
+
+  cursor: url("./assets/images/hammer.png") 32 32, auto;
+}
+
+.boxes.hidden {
+  display: none;
+}
+
+/* larger layouts */
+@media (min-width: 720px) {
+  .boxes {
+    gap: 18px;
+    padding: 28px;
+    max-width: 560px;
+  }
+}
+
+/* narrow viewports */
+@media (max-width: 420px) {
+  .boxes {
+    grid-template-columns: repeat(3, minmax(60px, 1fr));
+    gap: 8px;
+    padding: 10px;
+  }
+}
+
+/* ================= CARD / BOX ================= */
+
+.box {
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+
+  background: linear-gradient(180deg, #ffffff, #f1f1f1);
+  border: 2px solid rgba(0, 0, 0, 0.15);
+
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15),
+    inset 0 2px 4px rgba(255, 255, 255, 0.7);
+
+  transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+}
+
+/* Hover affordance */
+.box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18),
+    inset 0 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+/* Pressed feedback (non-mole) */
+.box:active {
+  transform: translateY(0) scale(0.98);
+  filter: brightness(0.96);
+}
+
+/* ================= MOLE ================= */
+
+.box.mole {
+  background: radial-gradient(circle at 50% 65%, #ffffff 30%, transparent 31%),
+    url("./assets/images/mole.png") center / contain no-repeat,
+    linear-gradient(180deg, #ffffff, #f1f1f1);
+}
+
+/* ================= MOLE HIT ================= */
+
+.box.mole-hit {
+  background: url("./assets/images/molehitted.png") center / contain no-repeat,
+    linear-gradient(180deg, #fff0e6, #ffd6b8);
+
+  box-shadow: 0 8px 18px rgba(255, 123, 84, 0.35),
+    inset 0 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+/* ================= HAMMER HIT STATE ================= */
+
+.boxes.hit-cursor,
+body.hit-cursor {
+  cursor: url("./assets/images/hammerhit.png") 32 32, auto !important;
+}
+
+/* Cursor hide when overlay is shown */
+.boxes.no-cursor,
+body.no-cursor,
+.box.no-cursor {
+  cursor: none !important;
+}
+
+/* MOLE */
+
+.box.mole {
+  background: url("./assets/images/mole.png") center / contain no-repeat;
+}
+
+/* MOLE HIT - show when mole is successfully hit */
+.box.mole-hit {
+  background: url("./assets/images/molehitted.png") center / contain no-repeat;
+}
+
+/* GAME OVER */
+
+.gameoverbox {
+  background: linear-gradient(180deg, #fff6ea, #ffe7d1);
+  padding: 28px 24px;
+  border-radius: 16px;
+  max-width: 360px;
+  margin: 30px auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  text-align: center;
+}
+.gameoverbox h1 {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+.gameoverbox p {
+  margin: 0;
+}
+#restartBtn {
+  width: 160px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: none;
+  background: var(--color-accent);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(255, 123, 84, 0.28);
+}
+#restartBtn:hover {
+  transform: translateY(-2px);
+}
+#restartBtn:active {
+  transform: translateY(0) scale(0.995);
+}
+
+/* START SCREEN */
+@media (max-width: 420px) {
+  .gameoverbox {
+    padding: 18px;
+    margin: 18px;
+  }
+  #restartBtn {
+    width: 140px;
+    padding: 10px 14px;
+  }
+  .start-screen {
+    padding-bottom: 120px;
+  }
+}
+.start-screen {
+  max-width: 360px;
+  margin: 30px auto;
+  /* remove the opaque white card background so only the Start button is visible */
+  background: transparent;
+  padding: 12px 0;
+  border-radius: 0;
+  position: relative; /* keeps layout placement for the button */
+  padding-bottom: 28px; /* small spacing under content */
+
+  /* ensure start screen sits above other absolute elements (like .playInfo)
+     and accepts pointer events reliably on touch devices */
+  z-index: 1100;
+  pointer-events: auto;
+}
+.start-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+/* START BUTTON */
+
+.startBtn {
+  width: min(220px, 80%);
+  height: 56px;
+
+  border-radius: 999px;
+  border: none;
+
+  background: linear-gradient(135deg, #ff7b54, #ffb347);
+  color: #fff;
+
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+
+  cursor: pointer;
+
+  box-shadow: 0 10px 24px rgba(255, 123, 84, 0.4),
+    inset 0 2px 6px rgba(255, 255, 255, 0.4);
+
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+
+  transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+
+  /* Ensure button is on top and receives pointer events */
+  z-index: 1110; /* above start-screen (1100) */
+  pointer-events: auto;
+}
+
+/* COUNTDOWN – hidden by default */
+.countdown {
+  display: none;
+  position: fixed;
+  inset: 0;
+
+  align-items: center;
+  justify-content: center;
+
+  font-family: var(--font-family);
+  font-size: clamp(36px, 10vw, 72px);
+  color: var(--color-primary);
+
+  pointer-events: none;
+  z-index: 999;
+  text-align: center;
+}
+
+.countdown.show {
+  display: flex;
+}
+
+/* HIT OVERLAY (fallback visual for immediate feedback) */
+.hit-overlay {
+  position: fixed;
+  width: clamp(40px, 8vw, 64px);
+  height: clamp(40px, 8vw, 64px);
+  background: url("./assets/images/hammerhit.png") center / contain no-repeat;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 120ms ease-out, opacity 150ms ease-out;
+  opacity: 1;
+}
+.hit-overlay.hide {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.7);
+}
+
+.gameoverbox {
+  display: none;
+}
+.gameoverbox:not([hidden]) {
+  display: flex;
+}
+
+/* HOW TO PLAY CARD */
+
+.playInfo {
+  position: absolute;
+  left: 24px;
+  top: 170px;
+
+  width: 260px;
+  padding: 18px 20px;
+
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 16px;
+
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12),
+    inset 0 2px 6px rgba(255, 255, 255, 0.8);
+
+  text-align: left;
+}
+
+/* On narrow and medium screens, avoid overlapping the start card by
+   making the play info flow below the header and game card. */
+@media (max-width: 900px) {
+  .playInfo {
+    position: static;
+    width: auto;
+    margin: 12px auto;
+    top: auto;
+    left: auto;
+  }
+}
+
+.playInfo h3 {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #a52a45;
+}
+
+.playInfo ul {
+  padding-left: 16px;
+}
+
+.playInfo li {
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+
+/* ================= THEMES ================= */
+
+body {
+  --bg-image: url("./assets/images/back2.jpg");
+  background: var(--bg-image) center / cover;
+}
+body.theme-desert {
+  --bg-image: url("./assets/images/background.jpg");
+}
+
+/* Theme variants */
+body.theme-forest {
+  --bg-image: url("./assets/images/background3.jpg");
+}
+
+body.theme-night {
+  --bg-image: url("./assets/images/background.png");
+}
+
+/* Theme button */
+
+.theme-btn {
+  margin-left: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  color: #555;
+}
+
+.theme-btn:hover {
+  color: #ff7b54;
+}
+
+/* ================= MOBILE & TOUCH OPTIMIZATIONS ================= */
+/* Increase hit targets, hide non-essential overlays on small screens and remove tap highlights */
+@media (max-width: 600px) {
+  :root {
+    --box-min: 72px;
+    --grid-gap: 8px;
+    --max-width: 360px;
+  }
+
+  /* simplify layout for small screens */
+  .playInfo {
+    display: none;
+  }
+
+  /* make the start button easier to tap */
+  .startBtn {
+    width: min(260px, 90%);
+    height: 64px;
+    bottom: 18px;
+  }
+  .start-screen {
+    padding-bottom: 120px;
+  }
+
+  /* slightly adjust header and score text for legibility */
+  .gameHead {
+    padding: 18px 0;
+    font-size: 14px;
+  }
+  .Time-display h2,
+  .total-score {
+    font-size: 14px;
+  }
+}
+
+/* Touch friendly interactions and disable tap highlight */
+.box,
+.startBtn,
+#restartBtn,
+.theme-btn {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Slightly larger hit overlay + countdown on very small screens */
+@media (max-width: 420px) {
+  .hit-overlay {
+    width: clamp(48px, 12vw, 80px);
+    height: clamp(48px, 12vw, 80px);
+  }
+  .countdown {
+    font-size: clamp(32px, 12vw, 64px);
+  }
+}
+
+/* Reduce hover-only transitions on touch devices to avoid unexpected behaviour */
+@media (hover: none) {
+  .box:hover {
+    transform: none;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  }
+  .startBtn:hover {
+    transform: translateX(-50%);
+  }
 }

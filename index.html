@@ -1,86 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      href="./assets/images/Treetog-I-Games.ico"
-      type="image/x-icon"
-    />
-    <title>Whack A Mole</title>
-    <!-- FontAwesome 5.15.3 CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
 
-    <!-- (Optional) Use CSS or JS implementation -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
-      integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <link rel="stylesheet" href="./style.css" />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
-    </style>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whack A Mole</title>
 
-  <body>
-    <div class="container">
-      <div class="gameHead">Whack a Mole Game</div>
-      <div class="Time-display">
-        <h3 class="total-score">Score:<span id="scores">0</span></h3>
-        <h2 id="time">Time remaining:<span id="timer">60</span></h2>
-        <a href="#" id="volumeMuter"><i class="fas fa-volume-up" id="volumeChanger"></i></a>
-      </div>
-      
-      <div class="playInfo">
-        <h3>How to Play Whack a Mole?</h3>
-        <h5>The Mole will appear randomly in boxes.</h5>
-        <h5>For Score you have to hit the mole with Hammer in given time</h5>
-        <h5>when the time is over Game will be over.</h5>
-      </div>
+  <link rel="shortcut icon" href="./assets/images/Treetog-I-Games.ico" />
 
-      <div class="boxes" id="gameboard">
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <main class="container">
+    <header class="gameHead">Whack a Mole Game</header>
+
+    <section class="Time-display">
+      <h3 class="total-score">
+        Score: <span id="scores" aria-live="polite">0</span>
+      </h3>
+
+      <h2>
+        Time remaining: <span id="timer">60</span>
+      </h2>
+      <button id="themeBtn" title="Change Theme" class="theme-btn" aria-label="Change theme">
+        <i class="fas fa-palette" aria-hidden="true"></i>
+      </button>
+
+    </section>
+
+    <section class="playInfo">
+      <h3>How to Play</h3>
+      <ul>
+        <li>Moles appear randomly</li>
+        <li>Click the mole to score</li>
+        <li>Game ends when time is over</li>
+      </ul>
+    </section>
+
+    <!-- START SCREEN -->
+    <section id="startScreen" class="start-screen">
+      <div class="start-inner">
+        <button id="startBtn" class="startBtn" aria-label="Start game">Start</button>
       </div>
-      <div id="gameover" class="gameoverbox">
-        <h1>Game Over !</h1>
-        <p>Your score is <span id="scoreDisplay"></span></p>
-        <a href=""
-          ><img
-            src="./assets/images/restart-game.jpg"
-            alt=""
-            height="50"
-            width="100px"
-            style="clear: both"
-            onclick="window.location.reload"
-          />
-        </a>
-        <img
-          src="./assets/images/animated.gif"
-          alt=""
-          height="200"
-          width="400"
-          style="margin: auto"
-        />
-      </div>
-    </div>
-    <script src="./script.js"></script>
-  </body>
+    </section>
+
+    <!-- GAME GRID -->
+    <section class="boxes hidden" id="gameboard">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </section>
+
+    <!-- GAME OVER -->
+    <section id="gameover" class="gameoverbox" hidden>
+      <h1>Game Over!</h1>
+      <p>Your score: <span id="scoreDisplay"></span></p>
+      <button id="restartBtn" aria-label="Restart game">Restart</button>
+    </section>
+  </main>
+
+  <!-- COUNTDOWN OVERLAY (outside start card so it can be shown while start card is hidden) -->
+  <div id="countdown" class="countdown" hidden>3</div>
+
+  <audio id="gameOverAudio" src="./assets/audio/gameover.wav" preload="auto"></audio>
+
+  <audio id="bgAudio" src="./assets/audio/background.mp3" loop></audio>
+  <audio id="hitAudio" src="./assets/audio/hit.wav" preload="auto"></audio>
+  <script src="./script.js" defer></script>
+</body>
+
 </html>
