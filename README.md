@@ -6,7 +6,6 @@ It is a single player game.The objective of the game is to hit the mole with Ham
 
 ## Screenshots
 
-![Home Screen](assets/screenshots/home.png)
 ![Gameplay](assets/images/gamescreen.png)
 
 ## How to Play :
